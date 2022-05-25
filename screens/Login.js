@@ -1,12 +1,10 @@
 import React from 'react';
 
 // Custom components
-import mainContainer from '../components/containers/mainContainer';
+import MainContainer from '../components/containers/MainContainer';
 
 const Login = () => {
-  return (
-    <mainContainer></mainContainer>
-  )
+    return <MainContainer></MainContainer>
 }
 
 export default Login;
