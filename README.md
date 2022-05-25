@@ -1,0 +1,1 @@
+The process of authenticating a user
