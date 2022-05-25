@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import SmallText from '../Texts/SmallText';
 
@@ -10,6 +10,7 @@ import styled from 'styled-components/native';
 
 // Custom colors
 import { colors } from '../colors';
+import { setIn } from 'formik';
 const { primary, tertiary, secondary, accent, lightGray } = colors;
 
 const InputFields = styled.TextInput`
@@ -37,7 +38,27 @@ border-color: ${ secondary };
 padding-right: 10px;
 `
 
-const StyledTextInput = ({ icon, label, ...props }) => {
+const RightIcon = styled.TouchableOpacity`
+position: absolute;
+top: 35px;
+right: 15px;
+z-index: 1;
+`
+
+const StyledTextInput = ({ icon, label, isPassword, ...props }) => {
+  const [inputBackgroundColor, setInputBackgroundColor] = useState(primary);
+  const [hidePassword, setHidePassword] = useState(true);
+
+  const customOnBlur = () => {
+    props?.onBlur;
+    setInputBackgroundColor(primary)
+  }
+
+  const customOnFocus = () => {
+    props?.onFocus;
+    setInputBackgroundColor(secondary)
+  }
+
   return <View>
     <LeftIcon>
       <MaterialCommunityIcons name={icon} size={30} color={accent}/>
@@ -45,7 +66,15 @@ const StyledTextInput = ({ icon, label, ...props }) => {
 
     <SmallText>{label}</SmallText>
 
-     <InputFields {...props} placeholderTextColor={ lightGray }/>
+     <InputFields {...props} placeholderTextColor={ lightGray } style={{ backgroundColor: inputBackgroundColor, ...props?.style }} onBlur={customOnBlur} onFocus={customOnFocus} secureTextEntry={isPassword && hidePassword}/>
+
+     {
+       isPassword && <RightIcon onPress={() => {
+         setHidePassword(!hidePassword);
+       }}>
+         <MaterialCommunityIcons name={ hidePassword ? 'eye-off' : 'eye'} size={30} color={tertiary}/>
+       </RightIcon>
+     }
   </View>
 }
 
