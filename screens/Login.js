@@ -17,6 +17,21 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
 
+  const handleLogin = async (credentials, seSubmitting) => {
+    try {
+      setMessage(null);
+
+      // Call to backend
+
+      // Move to next page
+
+      seSubmitting(false);
+    } catch(err){
+      setMessage('Login failded: ' + err.message);
+      seSubmitting(false)
+    }
+  }
+
     return <MainContainer>
       <KeyboardAvoidingContainer>
         <RegularText style={{ marginBottom: 25 }}>Enter your account credentials</RegularText>
