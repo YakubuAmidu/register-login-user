@@ -7,7 +7,9 @@ import MainContainer from '../components/Containers/MainContainer';
 import KeyboardAvoidingContainer from '../components/Containers/KeyboardAvoidingContainer';
 import StyledTextInput from '../components/Inputs/StyledTextInput';
 import RegularText from '../components/Texts/RegularText';
-import RegularButton from '../components/Buttons/RegularButton'
+import RegularButton from '../components/Buttons/RegularButton';
+import RowContainer from '../components/Containers/RowContainer';
+import PressableText from '../components/Texts/PressableText';
 import MsgBox from '../components/Texts/MsgBox';
 
 import { colors } from '../components/colors';
@@ -28,7 +30,7 @@ const Login = () => {
       seSubmitting(false);
     } catch(err){
       setMessage('Login failded: ' + err.message);
-      seSubmitting(false)
+      seSubmitting(false);
     }
   }
 
@@ -57,6 +59,11 @@ const Login = () => {
 
                 {!isSubmitting && <RegularButton onPress={handleSubmit}>Login</RegularButton>}
                 {isSubmitting && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
+                
+                <RowContainer>
+                <PressableText onPress={() => {}}>New Account signup</PressableText>
+                <PressableText onPress={() => {}}>Forgot password</PressableText>
+                </RowContainer>
                </>
              )
            }
