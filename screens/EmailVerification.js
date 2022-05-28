@@ -16,7 +16,7 @@ import MsgBox from '../components/Texts/MsgBox';
 
 // Colors
 import { colors } from '../components/colors';
-const { primary } = colors;
+const { primary, secondary , lightGray} = colors;
 
 const EmailVerification = () => {
   // Code input
@@ -27,7 +27,9 @@ const EmailVerification = () => {
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
 
-  const handleLogin = async (credentials, seSubmitting) => {
+  const [verifying, setVerifying] = useState(false);
+
+  const handleEmailVerification = async (credentials, seSubmitting) => {
     try {
       setMessage(null);
 
@@ -45,42 +47,17 @@ const EmailVerification = () => {
     return <MainContainer>
       <KeyboardAvoidingContainer>
 
-        <IconHeader name={"lock-open"} style={{ marginBottom: 20 }}/>
+        <IconHeader name={"lock-open"} style={{ marginBottom: 30 }}/>
 
-        <RegularText>Enter the 4-digit code sent to your email</RegularText>
+        <RegularText style={{ marginBottom: 25 }}>Enter the 4-digit code sent to your email</RegularText>
 
         <StyledCodeInput code={code} setCode={setCode} maxLength={MAX_CODE_LENGTH} setPinReady={setPinReady}/>
 
-        <Formik initialValues={{ email: '', password: '' }}
-        onSubmit={(values, { seSubmitting }) => {
-          if(values.email == " " || values.password == " "){
-            setMessage('Please fill in all fields...🚫');
-            seSubmitting(false)
-          } else {
-             handleLogin(values, seSubmitting)
-          }
-        }}
-        >
-           {
-             ({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
-               <>
-                <StyledTextInput label={"Email address"} icon={"email-variant"} placeholder={"Yakubu@gmail.com"} keyboardType={"email-address"} onChangeText={handleChange('email')} onBlur={handleBlur('email')} values={values.email} style={{ marginBottom: 15 }}/>
+        {!verifying && pinReady && <RegularButton onPress={handleEmailVerification}>Verify</RegularButton>}
+        {!verifying && !pinReady && <RegularButton disabled={true} style={{ backgroundColor: secondary }} textStyle={{ color: lightGray }}>Verify</RegularButton>}
 
-                <StyledTextInput label={"Password"} icon={"lock-open"} placeholder={"* * * * * * * *"} onChangeText={handleChange('password')} onBlur={handleBlur('password')} values={values.password} isPassword={true} style={{ marginBottom: 15 }}/>
+        {verifying && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
 
-                <MsgBox style={{ marginBottom: 25 }} success={isSuccessMessage}>{message || " "}</MsgBox>
-
-                {!isSubmitting && <RegularButton onPress={handleSubmit}>Login</RegularButton>}
-                {isSubmitting && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
-                
-                <RowContainer>
-                <PressableText onPress={() => {}}>New Account signup</PressableText>
-                <PressableText onPress={() => {}}>Forgot password</PressableText>
-                </RowContainer>
-               </>
-             )
-           }
-        </Formik>
       </KeyboardAvoidingContainer>
     </MainContainer>
 }
