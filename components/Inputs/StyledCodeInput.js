@@ -7,29 +7,70 @@ import { StatusBarHeight } from '../shared';
 
 // Custom colors
 import { colors } from '../colors';
-const { primary } = colors;
+const { secondary, tertiary } = colors;
 
 const CodeInputSection = styled.View`
 flex: 1;
 justify-content: center;
 align-items: center;
-margin-vertical: 35px;
+margin-vertical: 15px;
 `;
 
-const HiddentTextInput = styled.TextInput`
- 
-`
+const HiddenTextInput = styled.TextInput`
+ position: absolute;
+ width: 1px;
+ height: 1px;
+ opacity: 0;
+`;
+
+const CodeInputsContainer = styled.Pressable`
+width: 70%;
+flex-direction: row;
+justify-content: space-between;
+`;
+
+const CodeInput = styled.View`
+ min-width: 15%;
+ padding: 12px;
+ border-width: 5px;
+ border-radius: 10px;
+ border-color: ${secondary};
+`;
+
+const CodeInputText = styled.Text`
+ font-size: 22px;
+ font-weight: bold;
+ text-align: center;
+ color: ${tertiary};
+`;
 
 const StyledCodeInput = ({ setCode, code, maxLength }) => {
-  const codeDigitArray = new Array(maxLength).fill(0);
-  
+  const codeDigitsArray = new Array(maxLength).fill(0);
+
   // Ref for textinput
   const textInputRef = useRef(null);
 
-  const handleOnSubmitEditting = () => {}
+  const handleOnPress = () => {
+    textInputRef?.current?.focus();
+  }
+
+  const handleOnSubmitEditing = () => {}
+
+  const toCodeDigitInput = (value, index) => {
+    const emptyInputChar = ' ';
+    const digit = code[index] || emptyInputChar;
+
+    return (
+      <CodeInput key={index}>
+        <CodeInputText>{digit}</CodeInputText>
+      </CodeInput>
+    )
+  };
 
   return <CodeInputSection>
-    <HiddentTextInput 
+    <CodeInputsContainer onpress={handleOnPress}>{codeDigitsArray.map(toCodeDigitInput)}</CodeInputsContainer>
+
+    <HiddenTextInput 
   keyboardType="number-pad"
   returnKeyType="done"
   textContentType="oneTimeCode"
@@ -37,7 +78,7 @@ const StyledCodeInput = ({ setCode, code, maxLength }) => {
    value={code}
    onChangeText={setCode}
    maxLength={maxLength}
-   onSubmitEditting={handleOnSubmitEditting}
+   onSubmitEditing={handleOnSubmitEditing}
   />
   </CodeInputSection>
 }

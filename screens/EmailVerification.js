@@ -19,8 +19,9 @@ import { colors } from '../components/colors';
 const { primary } = colors;
 
 const EmailVerification = () => {
+  // Code input
   const MAX_CODE_LENGTH = 4;
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState('');
 
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
@@ -43,11 +44,11 @@ const EmailVerification = () => {
     return <MainContainer>
       <KeyboardAvoidingContainer>
 
-        <IconHeader name={"lock-open"} style={{ marginBottom: 30 }}/>
+        <IconHeader name={"lock-open"} style={{ marginBottom: 20 }}/>
 
-        <RegularText style={{ marginBottom: 25 }}>Enter the 4-digit code sent to your email</RegularText>
+        <RegularText>Enter the 4-digit code sent to your email</RegularText>
 
-        <StyledCodeInput code={code} setCode={setCode} MAX_CODE_LENGTH={MAX_CODE_LENGTH} />
+        <StyledCodeInput code={code} setCode={setCode} maxLength={MAX_CODE_LENGTH} />
 
         <Formik initialValues={{ email: '', password: '' }}
         onSubmit={(values, { seSubmitting }) => {
@@ -62,9 +63,9 @@ const EmailVerification = () => {
            {
              ({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
                <>
-                <StyledTextInput label={"Email address"} icon={"email-variant"} placeholder={"Yakubu@gmail.com"} keyboardType={"email-address"} onChangeText={handleChange('email')} onBlur={handleBlur('email')} values={values.email} style={{ marginBottom: 25 }}/>
+                <StyledTextInput label={"Email address"} icon={"email-variant"} placeholder={"Yakubu@gmail.com"} keyboardType={"email-address"} onChangeText={handleChange('email')} onBlur={handleBlur('email')} values={values.email} style={{ marginBottom: 15 }}/>
 
-                <StyledTextInput label={"Password"} icon={"lock-open"} placeholder={"* * * * * * * *"} onChangeText={handleChange('password')} onBlur={handleBlur('password')} values={values.password} isPassword={true} style={{ marginBottom: 25 }}/>
+                <StyledTextInput label={"Password"} icon={"lock-open"} placeholder={"* * * * * * * *"} onChangeText={handleChange('password')} onBlur={handleBlur('password')} values={values.password} isPassword={true} style={{ marginBottom: 15 }}/>
 
                 <MsgBox style={{ marginBottom: 25 }} success={isSuccessMessage}>{message || " "}</MsgBox>
 
