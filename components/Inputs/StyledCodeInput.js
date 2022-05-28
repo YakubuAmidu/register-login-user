@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 // Styled components
 import styled from 'styled-components/native';
@@ -7,7 +7,8 @@ import { StatusBarHeight } from '../shared';
 
 // Custom colors
 import { colors } from '../colors';
-const { secondary, tertiary } = colors;
+import { setIn } from 'formik';
+const { secondary, tertiary, accent } = colors;
 
 const CodeInputSection = styled.View`
 flex: 1;
@@ -32,7 +33,7 @@ justify-content: space-between;
 const CodeInput = styled.View`
  min-width: 15%;
  padding: 12px;
- border-width: 5px;
+ border-bottom-width: 5px;
  border-radius: 10px;
  border-color: ${secondary};
 `;
@@ -44,26 +45,50 @@ const CodeInputText = styled.Text`
  color: ${tertiary};
 `;
 
-const StyledCodeInput = ({ setCode, code, maxLength }) => {
+const CodeInputFocused = styled(CodeInput)`
+ border-color: ${ accent };
+`;
+
+const StyledCodeInput = ({ setCode, code, maxLength, setPinReady }) => {
   const codeDigitsArray = new Array(maxLength).fill(0);
+
+  const [inputContainerIsFocused, setInputContainerIsFocused] = useState(false);
 
   // Ref for textinput
   const textInputRef = useRef(null);
 
   const handleOnPress = () => {
-    textInputRef?.current?.focus();
+    setInputContainerIsFocused(true);
+    textInputRef.current.focus();
   }
 
-  const handleOnSubmitEditing = () => {}
+  const handleOnSubmitEditing = () => {
+    setInputContainerIsFocused(false);
+  };
+
+   useEffect(() => {
+     // Toggle pinReady
+     setPinReady(code.length === maxLength);
+     return () => setPinReady(false);
+   }, [code])
 
   const toCodeDigitInput = (value, index) => {
     const emptyInputChar = ' ';
     const digit = code[index] || emptyInputChar;
 
+    // Formatting
+    const isCurrentDigit = index === code.length;
+    const isLastDigit = index === maxLength - 1;
+    const isCodeFull = code.length === maxLength;
+
+    const isDigitFocused = isCurrentDigit || (isLastDigit && isCodeFull);
+
+    const StyledCodeInput = inputContainerIsFocused && isDigitFocused ? CodeInputFocused : CodeInput;
+
     return (
-      <CodeInput key={index}>
+      <StyledCodeInput key={index}>
         <CodeInputText>{digit}</CodeInputText>
-      </CodeInput>
+      </StyledCodeInput>
     )
   };
 

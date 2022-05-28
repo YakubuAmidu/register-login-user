@@ -22,6 +22,7 @@ const EmailVerification = () => {
   // Code input
   const MAX_CODE_LENGTH = 4;
   const [code, setCode] = useState('');
+  const [pinReady, setPinReady] = useState(false);
 
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
@@ -48,7 +49,7 @@ const EmailVerification = () => {
 
         <RegularText>Enter the 4-digit code sent to your email</RegularText>
 
-        <StyledCodeInput code={code} setCode={setCode} maxLength={MAX_CODE_LENGTH} />
+        <StyledCodeInput code={code} setCode={setCode} maxLength={MAX_CODE_LENGTH} setPinReady={setPinReady}/>
 
         <Formik initialValues={{ email: '', password: '' }}
         onSubmit={(values, { seSubmitting }) => {
