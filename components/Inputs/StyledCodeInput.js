@@ -96,8 +96,8 @@ const StyledCodeInput = ({ setCode, code, maxLength, setPinReady }) => {
     <CodeInputsContainer onpress={handleOnPress}>{codeDigitsArray.map(toCodeDigitInput)}</CodeInputsContainer>
 
     <HiddenTextInput 
-  keyboardType="number-pad"
-  returnKeyType="done"
+    keyboardType="number-pad"
+  returnKeyType={'done'}
   textContentType="oneTimeCode"
    ref={textInputRef}
    value={code}

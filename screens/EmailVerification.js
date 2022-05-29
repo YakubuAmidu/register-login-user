@@ -12,6 +12,7 @@ import RowContainer from '../components/Containers/RowContainer';
 import IconHeader from '../components/Icons/IconHeader';
 import PressableText from '../components/Texts/PressableText';
 import StyledCodeInput from '../components/Inputs/StyledCodeInput';
+import ResendTimer from '../components/Timers/ResendTimer';
 import MsgBox from '../components/Texts/MsgBox';
 
 // Colors
@@ -28,6 +29,9 @@ const EmailVerification = () => {
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
 
   const [verifying, setVerifying] = useState(false);
+
+  // Resending email
+  const [activeResend, setActiveResend] = useState(false);
 
   const handleEmailVerification = async (credentials, seSubmitting) => {
     try {
@@ -57,6 +61,8 @@ const EmailVerification = () => {
         {!verifying && !pinReady && <RegularButton disabled={true} style={{ backgroundColor: secondary }} textStyle={{ color: lightGray }}>Verify</RegularButton>}
 
         {verifying && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
+
+        <ResendTimer activeResend={activeResend} setActiveResend={setActiveResend}/>
 
       </KeyboardAvoidingContainer>
     </MainContainer>

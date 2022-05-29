@@ -16,7 +16,7 @@ const IconBg = styled.View`
 background-color: ${ secondary };
 width: ${ ScreenHeight * 0.15 }px;
 height: ${ ScreenHeight * 0.15}px;
-border-radius: ${ ScreenHeight * 0.02 }px;
+border-radius: ${ ScreenHeight * 0.08 }px;
 justify-content: center;
 align-items: center;
 align-self: center;
