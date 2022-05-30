@@ -1,12 +1,14 @@
 import React from 'react';
 import { Modal } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import BigText from '../Texts/BigText';
 
 // Styled components
 import styled from 'styled-components/native';
 
 // Custom colors
 import { colors } from '../colors';
-const { primary, black } = colors;
+const { primary, black, success, fail, tertiary } = colors;
 
 const ModalPressableContainer = styled.Pressable`
 flex: 1;
@@ -28,7 +30,7 @@ const ModalView = styled.View`
  shadow-radius: 4px;
 `;
 
-const MessageModal = ({ buttonHandler }) => {
+const MessageModal = ({ buttonHandler, type }) => {
   return (
     <Modal
     animationType="slide"
@@ -37,7 +39,11 @@ const MessageModal = ({ buttonHandler }) => {
     >
    <ModalPressableContainer onPress={buttonHandler}>
     <ModalView>
+     <MaterialCommunityIcons name={ type === "success" ? "check-circle" : "close-circle" } size={100}
+     color={ type === "success" ? success : fail }
+     />
 
+     <BigText style={{ fontSize: 25, color: tertiary, marginVertical: 10 }}>Heading</BigText>
     </ModalView>
    </ModalPressableContainer>
     </Modal>
