@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import RegularText from '../Texts/RegularText';
+import RegularButton from '../Buttons/RegularButton';
 import BigText from '../Texts/BigText';
 
 // Styled components
@@ -30,12 +32,12 @@ const ModalView = styled.View`
  shadow-radius: 4px;
 `;
 
-const MessageModal = ({ buttonHandler, type }) => {
+const MessageModal = ({ modalVisible, buttonHandler, type, headerText, message, buttonText }) => {
   return (
     <Modal
     animationType="slide"
     transparent={true}
-     visible={true}
+     visible={modalVisible}
     >
    <ModalPressableContainer onPress={buttonHandler}>
     <ModalView>
@@ -43,7 +45,11 @@ const MessageModal = ({ buttonHandler, type }) => {
      color={ type === "success" ? success : fail }
      />
 
-     <BigText style={{ fontSize: 25, color: tertiary, marginVertical: 10 }}>Heading</BigText>
+     <BigText style={{ fontSize: 25, color: tertiary, marginVertical: 10 }}>{ headerText }</BigText>
+
+     <RegularText style={{ marginBottom: 20 }}>{ message }</RegularText>
+
+     <RegularButton>{ buttonText || `Complete` }</RegularButton>
     </ModalView>
    </ModalPressableContainer>
     </Modal>
