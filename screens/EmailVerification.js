@@ -12,6 +12,7 @@ import RowContainer from '../components/Containers/RowContainer';
 import IconHeader from '../components/Icons/IconHeader';
 import PressableText from '../components/Texts/PressableText';
 import StyledCodeInput from '../components/Inputs/StyledCodeInput';
+import MessageModal from '../components/Modals/MessageModal';
 import ResendTimer from '../components/Timers/ResendTimer';
 import MsgBox from '../components/Texts/MsgBox';
 
@@ -49,7 +50,7 @@ const EmailVerification = () => {
         setResendStatus('Resend');
         setActiveResend(false);
         triggerTimer();
-      }, 5000);
+      }, 2000);
     } catch(err) {
        setResendingEmail(false);
        setResendStatus('Failed!');
@@ -87,6 +88,8 @@ const EmailVerification = () => {
         {verifying && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
 
         <ResendTimer activeResend={activeResend} setActiveResend={setActiveResend} resendStatus={resendStatus} resendingEmail={resendingEmail} resendEmail={resendEmail}/>
+
+        <MessageModal />
 
       </KeyboardAvoidingContainer>
     </MainContainer>
