@@ -63,7 +63,7 @@ const ResendTimer = ({ activeResend, setActiveResend, targetTimeInSeconds, resen
     <RowContatiner>
     <SmallText>Didn't received the email? </SmallText>
 
-      <PressableText onPress={() => resendEmail(triggerTimer)} disabled={!activeResend} style={{ opacity: !activeResend ?  0.35 : 1}}>
+      <PressableText onPress={() => resendEmail(triggerTimer)} disabled={!activeResend} style={{ opacity: !activeResend ?  0.25 : 2 }}>
     <ResendText resendStatus={resendStatus}>{ resendStatus }</ResendText>
     </PressableText>
     </RowContatiner>
