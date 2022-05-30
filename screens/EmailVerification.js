@@ -36,6 +36,23 @@ const EmailVerification = () => {
   const [resendStatus, setResendStatus] = useState('Resend');
   const [resendingEmail, setResendingEmail] = useState(false);
 
+  // Modal
+  // modalVisible, buttonHandler, type, headerText, message, buttonText 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalMessageType, setModalMessageType] = useState(' ');
+  const [headerText, setHeaderText] = useState(' ');
+  const [modalMessage, setModalMessage] = useState(' ');
+  const [buttonText, setButtonText] = useState(' ');
+
+  const buttonHandler = () => {
+    if(modalMessageType === 'success'){
+      // Do something
+
+    }
+
+    setModalVisible(false);
+  }
+
   const resendEmail = async (triggerTimer) => {
     try {
       setResendingEmail(true);
@@ -89,7 +106,14 @@ const EmailVerification = () => {
 
         <ResendTimer activeResend={activeResend} setActiveResend={setActiveResend} resendStatus={resendStatus} resendingEmail={resendingEmail} resendEmail={resendEmail}/>
 
-        <MessageModal />
+        <MessageModal 
+        modalVisible={modalVisible}
+        buttonHandler={buttonHandler}
+        type={modalMessageType}
+        message={modalMessage}
+        headerText={headerText}
+        buttonText={buttonText}
+        />
 
       </KeyboardAvoidingContainer>
     </MainContainer>
