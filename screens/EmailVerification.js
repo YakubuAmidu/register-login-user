@@ -32,6 +32,8 @@ const EmailVerification = () => {
 
   // Resending email
   const [activeResend, setActiveResend] = useState(false);
+  const [resendStatus, setResendStatus] = useState('Resend');
+  const [resendingEmail, setResendingEmail] = useState(false);
 
   const handleEmailVerification = async (credentials, seSubmitting) => {
     try {
@@ -62,7 +64,7 @@ const EmailVerification = () => {
 
         {verifying && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
 
-        <ResendTimer activeResend={activeResend} setActiveResend={setActiveResend}/>
+        <ResendTimer activeResend={activeResend} setActiveResend={setActiveResend} resendStatus={resendStatus} resendingEmail={resendingEmail}/>
 
       </KeyboardAvoidingContainer>
     </MainContainer>
