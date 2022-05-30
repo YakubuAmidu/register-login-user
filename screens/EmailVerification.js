@@ -51,6 +51,14 @@ const EmailVerification = () => {
     }
 
     setModalVisible(false);
+  };
+
+  const showModal = (type, buttonText, message, headerText) => {
+     setModalMessageType(type);
+     setHeaderText(headerText);
+     setModalMessage(message);
+     setButtonText(buttonText);
+     setModalVisible(true);
   }
 
   const resendEmail = async (triggerTimer) => {
@@ -75,18 +83,17 @@ const EmailVerification = () => {
     }
   }
 
-  const handleEmailVerification = async (credentials, seSubmitting) => {
+  const handleEmailVerification = async () => {
     try {
-      setMessage(null);
+      setVerifying(true);
 
       // Call to backend
 
-      // Move to next page
-
-      seSubmitting(false);
+      setVerifying(false);
+      return showModal('success', 'All Good', 'Your email has been verified!...😊', 'Proceed!');
     } catch(err){
-      setMessage('Login failded: ' + err.message);
-      seSubmitting(false);
+      setVerifying(false);
+      return showModal('failed!', 'Failed!', err.message, 'Close!');
     }
   }
 
