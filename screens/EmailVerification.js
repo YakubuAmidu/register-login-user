@@ -35,6 +35,28 @@ const EmailVerification = () => {
   const [resendStatus, setResendStatus] = useState('Resend');
   const [resendingEmail, setResendingEmail] = useState(false);
 
+  const resendEmail = async (triggerTimer) => {
+    try {
+      setResendingEmail(true);
+      
+      // Make request to backend
+      // update resendStatus() to 'Failed' or 'Sent'
+
+      setResendingEmail(false);
+      // Hold on briefly
+
+      setTimeout(() => {
+        setResendStatus('Resend');
+        setActiveResend(false);
+        triggerTimer();
+      }, 5000);
+    } catch(err) {
+       setResendingEmail(false);
+       setResendStatus('Failed!');
+       alert('Email resend Failed!...😔: ' + err.message);
+    }
+  }
+
   const handleEmailVerification = async (credentials, seSubmitting) => {
     try {
       setMessage(null);
@@ -64,7 +86,7 @@ const EmailVerification = () => {
 
         {verifying && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
 
-        <ResendTimer activeResend={activeResend} setActiveResend={setActiveResend} resendStatus={resendStatus} resendingEmail={resendingEmail}/>
+        <ResendTimer activeResend={activeResend} setActiveResend={setActiveResend} resendStatus={resendStatus} resendingEmail={resendingEmail} resendEmail={resendEmail}/>
 
       </KeyboardAvoidingContainer>
     </MainContainer>
