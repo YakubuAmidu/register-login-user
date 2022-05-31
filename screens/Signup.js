@@ -18,7 +18,7 @@ const Signup = () => {
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
 
-  const handleSignup = async (credentials, seSubmitting) => {
+  const handleSignup = async (credentials, setSubmitting) => {
     try {
       setMessage(null);
 
@@ -38,15 +38,15 @@ const Signup = () => {
         <RegularText style={{ marginBottom: 25 }}>Enter your account credentials</RegularText>
 
         <Formik initialValues={{ fullName: ' ', email: ' ', password: ' ', confirmPassword: ' ' }}
-        onSubmit={(values, { seSubmitting }) => {
+        onSubmit={(values, { setSubmitting }) => {
           if(values.fullName == " " || values.email == " " || values.password == " " || values.confirmPassword == " "){
             setMessage('Please fill in all fields...🚫');
-            seSubmitting(false)
+            setSubmitting(false)
           } else if(values.password !== values.confirmPassword){
              setMessage('Password do not match...🚫');
-             seSubmitting(false)
+             setSubmitting(false)
           } else {
-            handleSignup(values, seSubmitting)
+            handleSignup(values, setSubmitting)
           }
         }}
         >

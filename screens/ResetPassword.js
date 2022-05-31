@@ -78,9 +78,12 @@ const ResetPassword = () => {
 
         <Formik initialValues={{ email: '', confirmNewPassword: '' }}
         onSubmit={(values, { setSubmitting }) => {
-          if(values.email == " "){
+          if(values.newPassword == " " || values.confirmNewPassword == " "){
             setMessage('Please fill in all fields...🚫');
             setSubmitting(false)
+          } else if(values.newPassword !== values.confirmNewPassword){
+             setMessage('Password do not match...🚫');
+             setSubmitting(false)
           } else {
              handleOnSubmit(values, setSubmitting)
           }
