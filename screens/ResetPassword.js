@@ -76,7 +76,7 @@ const ResetPassword = () => {
 
         <ResendTimer activeResend={activeResend} setActiveResend={setActiveResend} resendStatus={resendStatus} resendingEmail={resendingEmail} resendEmail={resendEmail} style={{ marginBottom: 25 }}/>
 
-        <Formik initialValues={{ email: '' }}
+        <Formik initialValues={{ email: '', confirmNewPassword: '' }}
         onSubmit={(values, { setSubmitting }) => {
           if(values.email == " "){
             setMessage('Please fill in all fields...🚫');
@@ -89,9 +89,9 @@ const ResetPassword = () => {
            {
              ({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
                <>
-                <StyledTextInput label={"Password"} icon={"lock-open"} placeholder={"* * * * * * * *"} onChangeText={handleChange('password')} onBlur={handleBlur('password')} values={values.password} isPassword={true} style={{ marginBottom: 25 }}/>
+                <StyledTextInput label={"New Password"} icon={"lock-open-variant"} placeholder={"* * * * * * * *"} onChangeText={handleChange('newPassword')} onBlur={handleBlur('newPassword')} values={values.newPassword} isPassword={true} style={{ marginBottom: 25 }}/>
 
-                <StyledTextInput label={"Password"} icon={"lock-open"} placeholder={"* * * * * * * *"} onChangeText={handleChange('password')} onBlur={handleBlur('password')} values={values.password} isPassword={true} style={{ marginBottom: 25 }}/>
+                <StyledTextInput label={"Confirm New Password"} icon={"lock-open-variant"} placeholder={"* * * * * * * *"} onChangeText={handleChange('confirmNewPassword')} onBlur={handleBlur('confirmNewPassword')} values={values.confirmNewPassword} isPassword={true} style={{ marginBottom: 25 }}/>
 
                 <MsgBox style={{ marginBottom: 25 }} success={isSuccessMessage}>{message || " "}</MsgBox>
 
