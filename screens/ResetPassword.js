@@ -16,6 +16,14 @@ import MsgBox from '../components/Texts/MsgBox';
 import { colors } from '../components/colors';
 const { primary } = colors;
 
+import styled from 'styled-components/native';
+
+const FormWrapper = styled.View`
+ ${(props) => {
+   return props.pinReady ? "opacity: 1" : "opacity: 0.3";
+ }}
+`;
+
 const ResetPassword = () => {
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
@@ -91,17 +99,17 @@ const ResetPassword = () => {
         >
            {
              ({ handleChange, handleBlur, handleSubmit, values, isSubmitting }) => (
-               <>
-                <StyledTextInput label={"New Password"} icon={"lock-open-variant"} placeholder={"* * * * * * * *"} onChangeText={handleChange('newPassword')} onBlur={handleBlur('newPassword')} values={values.newPassword} isPassword={true} style={{ marginBottom: 25 }}/>
+               <FormWrapper pinReady={pinReady}>
+                <StyledTextInput label={"New Password"} icon={"lock-open-variant"} placeholder={"* * * * * * * *"} onChangeText={handleChange('newPassword')} onBlur={handleBlur('newPassword')} values={values.newPassword} isPassword={true} style={{ marginBottom: 25 }} editable={pinReady}/>
 
-                <StyledTextInput label={"Confirm New Password"} icon={"lock-open-variant"} placeholder={"* * * * * * * *"} onChangeText={handleChange('confirmNewPassword')} onBlur={handleBlur('confirmNewPassword')} values={values.confirmNewPassword} isPassword={true} style={{ marginBottom: 25 }}/>
+                <StyledTextInput label={"Confirm New Password"} icon={"lock-open-variant"} placeholder={"* * * * * * * *"} onChangeText={handleChange('confirmNewPassword')} onBlur={handleBlur('confirmNewPassword')} values={values.confirmNewPassword} isPassword={true} style={{ marginBottom: 25 }} editable={pinReady}/>
 
                 <MsgBox style={{ marginBottom: 25 }} success={isSuccessMessage}>{message || " "}</MsgBox>
 
-                {!isSubmitting && <RegularButton onPress={handleSubmit}>Submit</RegularButton>}
+                {!isSubmitting && <RegularButton onPress={handleSubmit} disabled={!pinReady}>Submit</RegularButton>}
                 {isSubmitting && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
                 
-               </>
+               </FormWrapper>
              )
            }
         </Formik>
