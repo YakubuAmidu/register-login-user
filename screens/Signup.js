@@ -26,10 +26,10 @@ const Signup = () => {
 
       // Move to next page
 
-      seSubmitting(false);
+      setSubmitting(false);
     } catch(err){
       setMessage('Signup failded: ' + err.message);
-      seSubmitting(false);
+      setSubmitting(false);
     }
   }
 
@@ -63,7 +63,7 @@ const Signup = () => {
 
                 <MsgBox style={{ marginBottom: 25 }} success={isSuccessMessage}>{message || " "}</MsgBox>
 
-                {!isSubmitting && <RegularButton onPress={handleSubmit}>Signup</RegularButton>}
+                {!isSubmitting && <RegularButton onPress={handleSignup}>Signup</RegularButton>}
                 {isSubmitting && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
                 
                 <PressableText style={{ paddingVertical: 15 }} onPress={() => {}}>Signup into an existing account</PressableText>

@@ -10,6 +10,7 @@ import RegularText from '../components/Texts/RegularText';
 import RegularButton from '../components/Buttons/RegularButton';
 import StyledCodeInput from '../components/Inputs/StyledCodeInput';
 import ResendTimer from '../components/Timers/ResendTimer';
+import MessageModal from '../components/Modals/MessageModal';
 import IconHeader from '../components/Icons/IconHeader';
 import MsgBox from '../components/Texts/MsgBox';
 
@@ -38,18 +39,41 @@ const ResetPassword = () => {
   const [resendStatus, setResendStatus] = useState('Resend');
   const [resendingEmail, setResendingEmail] = useState(false);
 
+   // Modal
+   const [modalVisible, setModalVisible] = useState(false);
+   const [modalMessageType, setModalMessageType] = useState(' ');
+   const [headerText, setHeaderText] = useState(' ');
+   const [modalMessage, setModalMessage] = useState(' ');
+   const [buttonText, setButtonText] = useState(' ');
+
+   const buttonHandler = () => {
+    if(modalMessageType === 'success'){
+      // Do something
+
+    }
+
+    setModalVisible(false);
+  };
+
+  const showModal = (type, buttonText, message, headerText) => {
+    setModalMessageType(type);
+    setHeaderText(headerText);
+    setModalMessage(message);
+    setButtonText(buttonText);
+    setModalVisible(true);
+ }
+
   const handleOnSubmit = async (credentials, setSubmitting) => {
     try {
       setMessage(null);
 
       // Call to backend
 
-      // Move to next page
-
       setSubmitting(false);
+      return showModal('success', 'All Good!...😊', 'Your password has been reset!...👍', 'Proceed!...👉')
     } catch(err){
-      setMessage('Request failded: ' + err.message);
       setSubmitting(false);
+      return showModal('failed', 'Failed!...😔', err.message, 'Close!...👊')
     }
   }
 
@@ -106,13 +130,23 @@ const ResetPassword = () => {
 
                 <MsgBox style={{ marginBottom: 25 }} success={isSuccessMessage}>{message || " "}</MsgBox>
 
-                {!isSubmitting && <RegularButton onPress={handleSubmit} disabled={!pinReady}>Submit</RegularButton>}
+                {!isSubmitting && <RegularButton onPress={handleOnSubmit} disabled={!pinReady}>Submit</RegularButton>}
                 {isSubmitting && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
                 
                </FormWrapper>
              )
            }
         </Formik>
+
+        <MessageModal 
+        modalVisible={modalVisible}
+        buttonHandler={buttonHandler}
+        type={modalMessageType}
+        message={modalMessage}
+        headerText={headerText}
+        buttonText={buttonText}
+        />
+
       </KeyboardAvoidingContainer>
     </MainContainer>
 }
