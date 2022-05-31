@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
-import { Formik } from 'formik';
 
 // Custom components
 import MainContainer from '../components/Containers/MainContainer';
 import KeyboardAvoidingContainer from '../components/Containers/KeyboardAvoidingContainer';
-import StyledTextInput from '../components/Inputs/StyledTextInput';
 import RegularText from '../components/Texts/RegularText';
 import RegularButton from '../components/Buttons/RegularButton';
-import RowContainer from '../components/Containers/RowContainer';
 import IconHeader from '../components/Icons/IconHeader';
-import PressableText from '../components/Texts/PressableText';
 import StyledCodeInput from '../components/Inputs/StyledCodeInput';
 import MessageModal from '../components/Modals/MessageModal';
 import ResendTimer from '../components/Timers/ResendTimer';
@@ -26,9 +22,6 @@ const EmailVerification = () => {
   const [code, setCode] = useState('');
   const [pinReady, setPinReady] = useState(false);
 
-  const [message, setMessage] = useState('');
-  const [isSuccessMessage, setIsSuccessMessage] = useState(false);
-
   const [verifying, setVerifying] = useState(false);
 
   // Resending email
@@ -37,7 +30,6 @@ const EmailVerification = () => {
   const [resendingEmail, setResendingEmail] = useState(false);
 
   // Modal
-  // modalVisible, buttonHandler, type, headerText, message, buttonText 
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessageType, setModalMessageType] = useState(' ');
   const [headerText, setHeaderText] = useState(' ');
@@ -66,11 +58,11 @@ const EmailVerification = () => {
       setResendingEmail(true);
       
       // Make request to backend
+
       // update resendStatus() to 'Failed' or 'Sent'
 
       setResendingEmail(false);
       // Hold on briefly
-
       setTimeout(() => {
         setResendStatus('Resend');
         setActiveResend(false);
