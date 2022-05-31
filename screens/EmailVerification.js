@@ -94,7 +94,7 @@ const EmailVerification = () => {
 
         <IconHeader name={"lock-open"} style={{ marginBottom: 30 }}/>
 
-        <RegularText style={{ marginBottom: 25 }}>Enter the 4-digit code sent to your email</RegularText>
+        <RegularText>Enter the 4-digit code sent to your email</RegularText>
 
         <StyledCodeInput code={code} setCode={setCode} maxLength={MAX_CODE_LENGTH} setPinReady={setPinReady}/>
 
