@@ -49,7 +49,7 @@ const MessageModal = ({ modalVisible, buttonHandler, type, headerText, message, 
 
      <RegularText style={{ marginBottom: 20 }}>{ message }</RegularText>
 
-     <RegularButton>{ buttonText || `Complete` }</RegularButton>
+     <RegularButton onPress={buttonHandler}>{ buttonText || `Complete` }</RegularButton>
     </ModalView>
    </ModalPressableContainer>
     </Modal>

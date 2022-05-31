@@ -90,10 +90,10 @@ const EmailVerification = () => {
       // Call to backend
 
       setVerifying(false);
-      return showModal('success', 'All Good', 'Your email has been verified!...😊', 'Proceed!');
+      return showModal('success', 'All Good!...👍', 'Your email has been verified!...😊', 'Proceed!');
     } catch(err){
       setVerifying(false);
-      return showModal('failed!', 'Failed!', err.message, 'Close!');
+      return showModal('failed!', 'Failed!...👎', err.message, 'Close!');
     }
   }
 
