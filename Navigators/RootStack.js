@@ -15,7 +15,8 @@ const Stack = createStackNavigator();
 // Styled components
 import styled from 'styled-components/native';
 import { colors } from '../components/colors';
-const { accent, secondary } = colors;
+import Avatar from '../components/Buttons/Avatar';
+const { accent, secondary, darkGray } = colors;
 
 const RootStack = () => {
   return <NavigationContainer>
@@ -38,14 +39,24 @@ const RootStack = () => {
       }
     }}
 
-    initialRouteName={"Login"}
+    initialRouteName={"Dashboard"}
     >
       <Stack.Screen name={"Login"} component={Login}/>
       <Stack.Screen name={"Signup"} component={Signup} />
       <Stack.Screen name={"EmailVerification"} component={EmailVerification} options={{ headerTitle: "Email Verification" }}/>
       <Stack.Screen name={"ForgotPassword"} component={ForgotPassword} options={{ headerTitle: "Forgot Password" }}/>
       <Stack.Screen name={"ResetPassword"} component={ResetPassword} options={{ headerTitle: "Reset Password" }}/>
-      <Stack.Screen name={"Dashboard"} component={Dashboard} />
+      <Stack.Screen name={"Dashboard"} component={Dashboard} options={{
+        headerStyle: {
+          height: 100,
+          backgroundColor: darkGray,
+          borderBottomWidth: 0,
+          shadowColor: 'transparent',
+          shadowOpacity: 0,
+          elevation: 0
+        },
+        headerRight: () => <Avatar />
+      }}/>
     </Stack.Navigator>
   </NavigationContainer>
 }
