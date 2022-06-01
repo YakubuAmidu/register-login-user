@@ -1,17 +1,8 @@
-import React, { useState } from 'react';
-import { ActivityIndicator } from 'react-native';
-import { Formik } from 'formik';
+import React from 'react';
 
 // Custom components
 import MainContainer from '../components/Containers/MainContainer';
-import KeyboardAvoidingContainer from '../components/Containers/KeyboardAvoidingContainer';
-import StyledTextInput from '../components/Inputs/StyledTextInput';
-import RegularText from '../components/Texts/RegularText';
-import RegularButton from '../components/Buttons/RegularButton';
-import RowContainer from '../components/Containers/RowContainer';
 import BigText from '../components/Texts/BigText';
-import PressableText from '../components/Texts/PressableText';
-import MsgBox from '../components/Texts/MsgBox';
 import InfoCard from '../components/Cards/InfoCard';
 
 // Custom colors
@@ -32,31 +23,15 @@ top: -30px;
 `
 
 const Dashboard = () => {
-  const [message, setMessage] = useState('');
-  const [isSuccessMessage, setIsSuccessMessage] = useState(false);
-
-  const handleLogin = async (credentials, seSubmitting) => {
-    try {
-      setMessage(null);
-
-      // Call to backend
-
-      // Move to next page
-
-      seSubmitting(false);
-    } catch(err){
-      setMessage('Login failded: ' + err.message);
-      seSubmitting(false);
-    }
-  }
-
     return <MainContainer style={{ paddingTop: 0, paddingLeft: 0, paddingRight: 0 }}>
        <TopBg />
 
        <MainContainer style={{ backgroundColor: 'transparent' }}>
          <BigText style={{ marginBottom: 25, fontWeight: 'bold', textAlign: 'left'}}>Hello! Walt</BigText>
 
-         <InfoCard />
+         <InfoCard icon={"chart-timeline-variant"} title={"Balance"} value={"13,288.65"} date={"13/05/22"} style={{ marginBottom: 25 }}/>
+
+         <InfoCard icon={"chart-arc"} title={"Savings"} value={"15,445.56"} date={"Last 6 month"}/>
        </MainContainer>
     </MainContainer>
 }

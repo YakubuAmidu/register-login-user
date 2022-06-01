@@ -2,6 +2,9 @@ import React from 'react';
 import RegularText from '../Texts/RegularText';
 import SmallText from '../Texts/SmallText';
 
+// Icons
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 // Styled components
 import styled from 'styled-components/native';
 
@@ -9,7 +12,7 @@ import { ScreenHeight } from '../shared';
 
 // Custom colors
 import { colors } from '../colors';
-const { primary, secondary, black } = colors;
+const { primary, secondary, black, accent } = colors;
 
 const CardView = styled.View`
 flex-direction: row;
@@ -32,16 +35,16 @@ const CardSection = styled.View`
  align-items: flex-start;
 `;
 
-const InfoCard = (props) => {
-  return <CardView {...props}>
+const InfoCard = ({ icon, value, date, title, color, ...props}) => {
+  return <CardView style={{ ...props?.style }}>
     <CardSection style={{ width: '60%' }}>
-     <RegularText style={{ fontWeight: 'bold'}}>Balance</RegularText>
-     <RegularText style={{ fontWeight: 'bold', fontSize: 25 }}>$ 13,288.65</RegularText>
-     <SmallText>13/05/22</SmallText>
+     <RegularText style={{ fontWeight: 'bold'}}>{ title }</RegularText>
+     <RegularText style={{ fontWeight: 'bold', fontSize: 25 }}>{ value }</RegularText>
+     <SmallText>{ date }</SmallText>
     </CardSection>
 
     <CardSection style={{ width: '40%' }}>
-
+      <MaterialCommunityIcons name={icon} size={ScreenHeight * 0.13} color={ color ? color : accent } />
     </CardSection>
   </CardView>
 }
