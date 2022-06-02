@@ -22,10 +22,14 @@ import MsgBox from '../components/Texts/MsgBox';
 import { colors } from '../components/colors';
 const { primary } = colors;
 
-const Signup = () => {
+const Signup = ({ navigation }) => {
   // State
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
+
+  const moveTo = (screen, payload) => {
+    navigation.navigate(screen, { ...payload});
+  }
 
   // Handle Signup function
   const handleSignup = async (credentials, setSubmitting) => {
@@ -35,10 +39,10 @@ const Signup = () => {
       // Call to backend
 
       // Move to next page
-
+      moveTo("EmailVerification");
       setSubmitting(false);
     } catch(err){
-      setMessage('Signup failded: ' + err.message);
+      setMessage('Signup failed: ' + err.message);
       setSubmitting(false);
     }
   }
@@ -47,9 +51,9 @@ const Signup = () => {
       <KeyboardAvoidingContainer>
         <RegularText style={{ marginBottom: 25 }}>Enter your account credentials</RegularText>
 
-        <Formik initialValues={{ fullName: ' ', email: ' ', password: ' ', confirmPassword: ' ' }}
+        <Formik initialValues={{ fullName: '', email: '', password: '', confirmPassword: '' }}
         onSubmit={(values, { setSubmitting }) => {
-          if(values.fullName == " " || values.email == " " || values.password == " " || values.confirmPassword == " "){
+          if(values.fullName == "" || values.email == "" || values.password == "" || values.confirmPassword == ""){
             setMessage('Please fill in all fields...🚫');
             setSubmitting(false)
           } else if(values.password !== values.confirmPassword){
@@ -73,10 +77,10 @@ const Signup = () => {
 
                 <MsgBox style={{ marginBottom: 25 }} success={isSuccessMessage}>{message || " "}</MsgBox>
 
-                {!isSubmitting && <RegularButton onPress={handleSignup}>Signup</RegularButton>}
+                {!isSubmitting && <RegularButton onPress={handleSubmit}>Signup</RegularButton>}
                 {isSubmitting && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
                 
-                <PressableText style={{ paddingVertical: 15 }} onPress={() => {}}>Signup into an existing account</PressableText>
+                <PressableText style={{ paddingVertical: 15 }} onPress={() => {moveTo("Login")}}>Sign into an existing account</PressableText>
                </>
              )
            }

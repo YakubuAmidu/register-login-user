@@ -39,7 +39,7 @@ const RootStack = () => {
       }
     }}
 
-    initialRouteName={"Dashboard"}
+    initialRouteName={"Login"}
     >
       <Stack.Screen name={"Login"} component={Login}/>
       <Stack.Screen name={"Signup"} component={Signup} />

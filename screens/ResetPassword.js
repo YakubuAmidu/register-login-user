@@ -41,7 +41,7 @@ const FormWrapper = styled.View`
  }}
 `;
 // Reset Password function
-const ResetPassword = () => {
+const ResetPassword = ({ navigation }) => {
   // Stae
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
@@ -65,11 +65,15 @@ const ResetPassword = () => {
    const [modalMessage, setModalMessage] = useState(' ');
    const [buttonText, setButtonText] = useState(' ');
 
+   const moveTo = (screen, payload) => {
+     navigation.navigate(screen, { ...payload });
+   };
+
    // Button Handler function
    const buttonHandler = () => {
     if(modalMessageType === 'success'){
       // Do something
-
+      moveTo("Login");
     }
 
     setModalVisible(false);
@@ -132,7 +136,7 @@ const ResetPassword = () => {
 
         <Formik initialValues={{ email: '', confirmNewPassword: '' }}
         onSubmit={(values, { setSubmitting }) => {
-          if(values.newPassword == " " || values.confirmNewPassword == " "){
+          if(values.newPassword == "" || values.confirmNewPassword == ""){
             setMessage('Please fill in all fields...🚫');
             setSubmitting(false)
           } else if(values.newPassword !== values.confirmNewPassword){
@@ -152,7 +156,7 @@ const ResetPassword = () => {
 
                 <MsgBox style={{ marginBottom: 25 }} success={isSuccessMessage}>{message || " "}</MsgBox>
 
-                {!isSubmitting && <RegularButton onPress={handleOnSubmit} disabled={!pinReady}>Submit</RegularButton>}
+                {!isSubmitting && <RegularButton onPress={handleSubmit} disabled={!pinReady}>Submit</RegularButton>}
                 {isSubmitting && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
                 
                </FormWrapper>

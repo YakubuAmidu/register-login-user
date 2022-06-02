@@ -26,22 +26,26 @@ import MsgBox from '../components/Texts/MsgBox';
 import { colors } from '../components/colors';
 const { primary } = colors;
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
 
-  const handleLogin = async (credentials, seSubmitting) => {
+  const moveTo = (screen, payload) => {
+    navigation.navigate(screen, { ...payload });
+  };
+
+  const handleLogin = async (credentials, setSubmitting) => {
     try {
       setMessage(null);
 
       // Call to backend
 
       // Move to next page
-
-      seSubmitting(false);
+        moveTo("Dashboard");
+      setSubmitting(false);
     } catch(err){
       setMessage('Login failded: ' + err.message);
-      seSubmitting(false);
+      setSubmitting(false);
     }
   }
 
@@ -50,12 +54,12 @@ const Login = () => {
         <RegularText style={{ marginBottom: 25 }}>Enter your account credentials</RegularText>
 
         <Formik initialValues={{ email: '', password: '' }}
-        onSubmit={(values, { seSubmitting }) => {
-          if(values.email == " " || values.password == " "){
+        onSubmit={(values, { setSubmitting }) => {
+          if(values.email == "" || values.password == ""){
             setMessage('Please fill in all fields...🚫');
-            seSubmitting(false)
+            setSubmitting(false)
           } else {
-             handleLogin(values, seSubmitting)
+             handleLogin(values, setSubmitting)
           }
         }}
         >
@@ -72,8 +76,8 @@ const Login = () => {
                 {isSubmitting && <RegularButton disabled={true}><ActivityIndicator size={"large"} color={primary} /></RegularButton>}
                 
                 <RowContainer>
-                <PressableText onPress={() => {}}>New Account signup</PressableText>
-                <PressableText onPress={() => {}}>Forgot password</PressableText>
+                <PressableText onPress={() => {moveTo("Signup")}}>New Account signup</PressableText>
+                <PressableText onPress={() => {moveTo("ForgotPassword")}}>Forgot password</PressableText>
                 </RowContainer>
                </>
              )

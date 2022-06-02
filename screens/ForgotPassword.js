@@ -18,9 +18,13 @@ import { colors } from '../components/colors';
 const { primary } = colors;
 
 // Forgot Password function
-const ForgotPassword = () => {
+const ForgotPassword = ({ navigation }) => {
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
+
+  const moveTo = (screen, paylaod) => {
+    navigation.navigate(screen, { ...paylaod });
+  };
 
   // HandleOnSubmit function
   const handleOnSubmit = async (credentials, setSubmitting) => {
@@ -30,10 +34,10 @@ const ForgotPassword = () => {
       // Call to backend
 
       // Move to next page
-
+      moveTo("ResetPassword");
       setSubmitting(false);
     } catch(err){
-      setMessage('Request failded: ' + err.message);
+      setMessage('Request failed: ' + err.message);
       setSubmitting(false);
     }
   }
@@ -46,7 +50,7 @@ const ForgotPassword = () => {
 
         <Formik initialValues={{ email: '' }}
         onSubmit={(values, { setSubmitting }) => {
-          if(values.email == " "){
+          if(values.email == ""){
             setMessage('Please fill in all fields...🚫');
             setSubmitting(false)
           } else {
