@@ -1,9 +1,12 @@
 import React from 'react';
 
-// Custom components
+// Custom Containers
 import MainContainer from '../components/Containers/MainContainer';
-import Avatar from '../components/Buttons/Avatar';
+
+// Text
 import BigText from '../components/Texts/BigText';
+
+// InfoCard
 import InfoCard from '../components/Cards/InfoCard';
 
 // Custom colors
@@ -12,8 +15,11 @@ const { darkGray } = colors;
 
 // Styled components
 import styled from 'styled-components/native';
+
+// Screen Height
 import { ScreenHeight } from '../components/shared';
 
+// Top Background
 const TopBg = styled.View`
 background-color: ${ darkGray };
 width: 100%;
@@ -21,7 +27,7 @@ height: ${ ScreenHeight * 0.3 }px;
 border-radius: 30px;
 position: absolute;
 top: -30px;
-`
+`;
 
 const Dashboard = () => {
     return <MainContainer style={{ paddingTop: 0, paddingLeft: 0, paddingRight: 0 }}>

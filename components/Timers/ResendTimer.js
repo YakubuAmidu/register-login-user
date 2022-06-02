@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
+
+// Texts
 import SmallText from '../Texts/SmallText';
 import PressableText from '../Texts/PressableText';
+
+// Row Container
 import RowContatiner from '../Containers/RowContainer';
 
 // Styled components
@@ -10,10 +14,12 @@ import styled from 'styled-components/native';
 import { colors } from '../colors';
 const { accent, fail, success  } = colors;
 
+// Styled View
 const StyledView = styled.View`
 align-items: center;
 `;
 
+// Resent Text
 const ResendText = styled(SmallText)`
  color: ${ accent };
   ${(props) => {

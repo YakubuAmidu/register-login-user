@@ -2,16 +2,27 @@ import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { Formik } from 'formik';
 
-// Custom components
+// Custom Containes
 import MainContainer from '../components/Containers/MainContainer';
 import KeyboardAvoidingContainer from '../components/Containers/KeyboardAvoidingContainer';
+
+// Styled Text Input
 import StyledTextInput from '../components/Inputs/StyledTextInput';
+
+// Text
 import RegularText from '../components/Texts/RegularText';
-import RegularButton from '../components/Buttons/RegularButton';
-import RowContainer from '../components/Containers/RowContainer';
 import PressableText from '../components/Texts/PressableText';
+
+// Buttons
+import RegularButton from '../components/Buttons/RegularButton';
+
+// Container
+import RowContainer from '../components/Containers/RowContainer';
+
+// Message Box
 import MsgBox from '../components/Texts/MsgBox';
 
+// Custom colors
 import { colors } from '../components/colors';
 const { primary } = colors;
 

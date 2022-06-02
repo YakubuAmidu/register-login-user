@@ -10,6 +10,7 @@ import { colors } from '../colors';
 import { setIn } from 'formik';
 const { secondary, tertiary, accent } = colors;
 
+// Code Input Section
 const CodeInputSection = styled.View`
 flex: 1;
 justify-content: center;
@@ -17,6 +18,7 @@ align-items: center;
 margin-vertical: 15px;
 `;
 
+// Hidden Text Input
 const HiddenTextInput = styled.TextInput`
  position: absolute;
  width: 1px;
@@ -24,12 +26,14 @@ const HiddenTextInput = styled.TextInput`
  opacity: 0;
 `;
 
+// Code Input Container
 const CodeInputsContainer = styled.Pressable`
 width: 70%;
 flex-direction: row;
 justify-content: space-between;
 `;
 
+// Code Input
 const CodeInput = styled.View`
  min-width: 15%;
  padding: 12px;
@@ -38,6 +42,7 @@ const CodeInput = styled.View`
  border-color: ${secondary};
 `;
 
+// Code Input Text
 const CodeInputText = styled.Text`
  font-size: 22px;
  font-weight: bold;
@@ -45,6 +50,7 @@ const CodeInputText = styled.Text`
  color: ${tertiary};
 `;
 
+// Code Input Focused
 const CodeInputFocused = styled(CodeInput)`
  border-color: ${ accent };
 `;
@@ -57,21 +63,26 @@ const StyledCodeInput = ({ setCode, code, maxLength, setPinReady }) => {
   // Ref for textinput
   const textInputRef = useRef(null);
 
+  // HandleOnPress
   const handleOnPress = () => {
     setInputContainerIsFocused(true);
     textInputRef.current.focus();
   }
 
+
+  // HandleOnSubmitting
   const handleOnSubmitEditing = () => {
     setInputContainerIsFocused(false);
   };
 
+  // useEffect
    useEffect(() => {
      // Toggle pinReady
      setPinReady(code.length === maxLength);
      return () => setPinReady(false);
    }, [code])
 
+   // toCodeDigitInput function
   const toCodeDigitInput = (value, index) => {
     const emptyInputChar = ' ';
     const digit = code[index] || emptyInputChar;

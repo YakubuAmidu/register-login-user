@@ -1,27 +1,43 @@
 import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 
-// Custom components
+// Containers
 import MainContainer from '../components/Containers/MainContainer';
 import KeyboardAvoidingContainer from '../components/Containers/KeyboardAvoidingContainer';
+
+// Text
 import RegularText from '../components/Texts/RegularText';
+
+// Button
 import RegularButton from '../components/Buttons/RegularButton';
+
+// Icon
 import IconHeader from '../components/Icons/IconHeader';
+
+// Code Input
 import StyledCodeInput from '../components/Inputs/StyledCodeInput';
+
+// Modal
 import MessageModal from '../components/Modals/MessageModal';
+
+// Timer
 import ResendTimer from '../components/Timers/ResendTimer';
-import MsgBox from '../components/Texts/MsgBox';
 
 // Colors
 import { colors } from '../components/colors';
 const { primary, secondary , lightGray} = colors;
 
 const EmailVerification = () => {
-  // Code input
+  // Code Lenght
   const MAX_CODE_LENGTH = 4;
+
+  // Code state
   const [code, setCode] = useState('');
+
+  // Pin Ready state
   const [pinReady, setPinReady] = useState(false);
 
+  // Verifying state
   const [verifying, setVerifying] = useState(false);
 
   // Resending email
@@ -29,13 +45,14 @@ const EmailVerification = () => {
   const [resendStatus, setResendStatus] = useState('Resend');
   const [resendingEmail, setResendingEmail] = useState(false);
 
-  // Modal
+  // Modal states
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessageType, setModalMessageType] = useState(' ');
   const [headerText, setHeaderText] = useState(' ');
   const [modalMessage, setModalMessage] = useState(' ');
   const [buttonText, setButtonText] = useState(' ');
 
+  // Button Handler
   const buttonHandler = () => {
     if(modalMessageType === 'success'){
       // Do something
@@ -45,6 +62,7 @@ const EmailVerification = () => {
     setModalVisible(false);
   };
 
+  // Show Modal
   const showModal = (type, buttonText, message, headerText) => {
      setModalMessageType(type);
      setHeaderText(headerText);
@@ -53,6 +71,7 @@ const EmailVerification = () => {
      setModalVisible(true);
   }
 
+  // Resend Email
   const resendEmail = async (triggerTimer) => {
     try {
       setResendingEmail(true);
@@ -75,6 +94,7 @@ const EmailVerification = () => {
     }
   }
 
+  // Handle Email Verification
   const handleEmailVerification = async () => {
     try {
       setVerifying(true);

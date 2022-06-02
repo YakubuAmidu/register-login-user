@@ -7,6 +7,7 @@ import styled from 'styled-components/native';
 import { colors } from '../colors';
 const { tertiary } = colors;
 
+// Styled Text
 const StyledText = styled.Text`
   font-size: 15px;
   color: ${tertiary};

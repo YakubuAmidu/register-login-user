@@ -1,23 +1,33 @@
 import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
+// Formik
 import { Formik } from 'formik';
 
-// Custom components
+// Custom Containers
 import MainContainer from '../components/Containers/MainContainer';
 import KeyboardAvoidingContainer from '../components/Containers/KeyboardAvoidingContainer';
+
+// Texts
 import StyledTextInput from '../components/Inputs/StyledTextInput';
 import RegularText from '../components/Texts/RegularText';
+
+// Buttons
 import RegularButton from '../components/Buttons/RegularButton';
 import PressableText from '../components/Texts/PressableText';
+
+// Message Box
 import MsgBox from '../components/Texts/MsgBox';
 
+// Custom colors
 import { colors } from '../components/colors';
 const { primary } = colors;
 
 const Signup = () => {
+  // State
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
 
+  // Handle Signup function
   const handleSignup = async (credentials, setSubmitting) => {
     try {
       setMessage(null);

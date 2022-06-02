@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Text
 import RegularText from '../Texts/RegularText'
 
 // Styled components
@@ -8,6 +10,7 @@ import styled from 'styled-components/native';
 import { colors } from '../colors';
 const { primary, accent } = colors;
 
+// Button View
 const ButtonView = styled.TouchableOpacity`
 padding: 15px;
 background-color: ${ accent };

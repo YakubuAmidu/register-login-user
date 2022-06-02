@@ -1,40 +1,59 @@
 import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
+
+// Formik
 import { Formik } from 'formik';
 
-// Custom components
+// Custom Containers
 import MainContainer from '../components/Containers/MainContainer';
 import KeyboardAvoidingContainer from '../components/Containers/KeyboardAvoidingContainer';
+
+// Custom Text
 import StyledTextInput from '../components/Inputs/StyledTextInput';
 import RegularText from '../components/Texts/RegularText';
+
+// Custom Button
 import RegularButton from '../components/Buttons/RegularButton';
+
+// Code Input
 import StyledCodeInput from '../components/Inputs/StyledCodeInput';
+
+// Message Timer
 import ResendTimer from '../components/Timers/ResendTimer';
+
+// Modal
 import MessageModal from '../components/Modals/MessageModal';
-import IconHeader from '../components/Icons/IconHeader';
+
+// Message Box
 import MsgBox from '../components/Texts/MsgBox';
 
+// Custom colors
 import { colors } from '../components/colors';
 const { primary } = colors;
 
+// Styled components
 import styled from 'styled-components/native';
 
+// FormWrapper function
 const FormWrapper = styled.View`
  ${(props) => {
    return props.pinReady ? "opacity: 1" : "opacity: 0.3";
  }}
 `;
-
+// Reset Password function
 const ResetPassword = () => {
+  // Stae
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
 
    // Code input
    const MAX_CODE_LENGTH = 4;
+
+   // State
    const [code, setCode] = useState('');
    const [pinReady, setPinReady] = useState(false);
 
-     // Resending email
+  // Resending email
   const [activeResend, setActiveResend] = useState(false);
   const [resendStatus, setResendStatus] = useState('Resend');
   const [resendingEmail, setResendingEmail] = useState(false);
@@ -46,6 +65,7 @@ const ResetPassword = () => {
    const [modalMessage, setModalMessage] = useState(' ');
    const [buttonText, setButtonText] = useState(' ');
 
+   // Button Handler function
    const buttonHandler = () => {
     if(modalMessageType === 'success'){
       // Do something
@@ -63,6 +83,7 @@ const ResetPassword = () => {
     setModalVisible(true);
  }
 
+ // Handle On Submit function
   const handleOnSubmit = async (credentials, setSubmitting) => {
     try {
       setMessage(null);
@@ -77,6 +98,7 @@ const ResetPassword = () => {
     }
   }
 
+  // Resend Email function
   const resendEmail = async (triggerTimer) => {
     try {
       setResendingEmail(true);

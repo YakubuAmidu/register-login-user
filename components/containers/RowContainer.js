@@ -3,6 +3,7 @@ import React from 'react';
 // Styled components
 import styled from 'styled-components/native';
 
+// Styled View
 const StyledView = styled.View`
 flex-direction: row;
 justify-content: space-between;

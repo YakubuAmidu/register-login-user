@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
+
+// Text
 import SmallText from '../Texts/SmallText';
 
 // Icons
@@ -10,9 +12,9 @@ import styled from 'styled-components/native';
 
 // Custom colors
 import { colors } from '../colors';
-import { setIn } from 'formik';
 const { primary, tertiary, secondary, accent, lightGray } = colors;
 
+// Input Fields
 const InputFields = styled.TextInput`
  background-color: ${ primary };
  padding: 15px;
@@ -28,6 +30,7 @@ const InputFields = styled.TextInput`
  border-width: 2px;
 `;
 
+// Left Icon
 const LeftIcon = styled.View`
 position: absolute;
 top: 35px;
@@ -36,24 +39,28 @@ z-index: 1;
 border-right-width: 2px;
 border-color: ${ secondary };
 padding-right: 10px;
-`
+`;
 
+// Right Icon
 const RightIcon = styled.TouchableOpacity`
 position: absolute;
 top: 35px;
 right: 15px;
 z-index: 1;
-`
+`;
 
 const StyledTextInput = ({ icon, label, isPassword, ...props }) => {
+  // useState
   const [inputBackgroundColor, setInputBackgroundColor] = useState(primary);
   const [hidePassword, setHidePassword] = useState(true);
 
+  // CustomOnBlur function
   const customOnBlur = () => {
     props?.onBlur;
     setInputBackgroundColor(primary)
   }
 
+  // CustomOnFocus funtion
   const customOnFocus = () => {
     props?.onFocus;
     setInputBackgroundColor(secondary)

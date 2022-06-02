@@ -7,6 +7,7 @@ import styled from 'styled-components/native';
 import { colors } from '../colors';
 const { primary } = colors;
 
+// Styled View
 const StyledView = styled.View`
 flex: 1;
 padding: 25px;

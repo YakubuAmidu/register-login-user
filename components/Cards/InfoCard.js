@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Text
 import RegularText from '../Texts/RegularText';
 import SmallText from '../Texts/SmallText';
 
@@ -8,12 +10,14 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 // Styled components
 import styled from 'styled-components/native';
 
+// Screen Height
 import { ScreenHeight } from '../shared';
 
 // Custom colors
 import { colors } from '../colors';
 const { primary, secondary, black, accent } = colors;
 
+// Card View
 const CardView = styled.View`
 flex-direction: row;
 height: ${ ScreenHeight * 0.2}px;
@@ -30,6 +34,7 @@ shadow-opacity: 0.25;
 shadow-radius: 4px;
 `;
 
+// Card Section
 const CardSection = styled.View`
  justify-content: space-between;
  align-items: flex-start;

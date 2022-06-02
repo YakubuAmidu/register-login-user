@@ -5,6 +5,7 @@ import EmailVerification from '../screens/EmailVerification';
 import ForgotPassword from '../screens/ForgotPassword';
 import ResetPassword from '../screens/ResetPassword';
 import Dashboard from '../screens/Dashboard';
+import Avatar from '../components/Buttons/Avatar';
 
 // React Navigation
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,7 +16,6 @@ const Stack = createStackNavigator();
 // Styled components
 import styled from 'styled-components/native';
 import { colors } from '../components/colors';
-import Avatar from '../components/Buttons/Avatar';
 const { accent, secondary, darkGray } = colors;
 
 const RootStack = () => {
@@ -49,7 +49,7 @@ const RootStack = () => {
       <Stack.Screen name={"Dashboard"} component={Dashboard} options={{
         headerStyle: {
           height: 100,
-          backgroundColor: darkGray,
+          // backgroundColor: darkGray,
           borderBottomWidth: 0,
           shadowColor: 'transparent',
           shadowOpacity: 0,

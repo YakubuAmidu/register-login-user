@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
+
+// Formik
 import { Formik } from 'formik';
 
 // Custom components
@@ -11,13 +13,16 @@ import RegularButton from '../components/Buttons/RegularButton';
 import IconHeader from '../components/Icons/IconHeader';
 import MsgBox from '../components/Texts/MsgBox';
 
+// Custom colors
 import { colors } from '../components/colors';
 const { primary } = colors;
 
+// Forgot Password function
 const ForgotPassword = () => {
   const [message, setMessage] = useState('');
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
 
+  // HandleOnSubmit function
   const handleOnSubmit = async (credentials, setSubmitting) => {
     try {
       setMessage(null);

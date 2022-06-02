@@ -6,12 +6,14 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 // Styled components
 import styled from 'styled-components/native';
 
+// Screen Height
 import { ScreenHeight } from '../shared';
 
 // Custom colors
 import { colors } from '../colors';
 const { secondary, accent } = colors;
 
+// Icon Background
 const IconBg = styled.View`
 background-color: ${ secondary };
 width: ${ ScreenHeight * 0.15 }px;
