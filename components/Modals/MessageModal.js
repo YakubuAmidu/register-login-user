@@ -1,9 +1,15 @@
 import React from 'react';
 import { Modal } from 'react-native';
+
+// Icon
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+// Text
 import RegularText from '../Texts/RegularText';
-import RegularButton from '../Buttons/RegularButton';
 import BigText from '../Texts/BigText';
+
+// Button
+import RegularButton from '../Buttons/RegularButton';
 
 // Styled components
 import styled from 'styled-components/native';
@@ -12,14 +18,16 @@ import styled from 'styled-components/native';
 import { colors } from '../colors';
 const { primary, black, success, fail, tertiary } = colors;
 
-const ModalPressableContainer = styled.Pressable`
+// Modal Container
+export const ModalPressableContainer = styled.Pressable`
 flex: 1;
 padding: 25px;
 background-color: rgba(0, 0, 0, 0.7);
 justify-content: center;
 `;
 
-const ModalView = styled.View`
+// Modal View
+export const ModalView = styled.View`
  background-color: ${ primary };
  border-radius: 20px;
  width: 100%;
@@ -32,6 +40,7 @@ const ModalView = styled.View`
  shadow-radius: 4px;
 `;
 
+// Props
 const MessageModal = ({ modalVisible, buttonHandler, type, headerText, message, buttonText }) => {
   return (
     <Modal
